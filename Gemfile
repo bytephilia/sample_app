@@ -2,14 +2,17 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+gem 'sqlite3'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :development, :test do
+  gem 'sqlite3'
+end
+
 group :production do
   gem 'pg'
-end
-group :development, :test do
-  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
 
 # Gems used only for assets and not required
@@ -27,9 +30,9 @@ end
 gem 'jquery-rails'
 
 group :development do
-	gem 'rspec-rails', '2.0.0'
+	gem 'rspec-rails'
 end
 
 group :test do
-	gem 'rspec', '2.0.0'
+	gem 'rspec'
 end	
