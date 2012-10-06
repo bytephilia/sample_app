@@ -2,11 +2,13 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  email              :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  encrypted_password :string(255)
+#  salt               :string(255)
 #
 
 require 'spec_helper'
@@ -104,7 +106,18 @@ describe User do
 			long = "a" * 41
 			hash = @attr.merge(:password => long, :password_confirmation => long)
 			User.new(hash).should_not be_valid
-		end		
-
+		end
 	end
+
+	describe "password encryption" do
+
+		before(:each) do
+			@user = User.create!(@attr)
+		end
+
+		it "should have an encrypted password attribute" do
+			@user.should respond_to(:encrypted_password)
+		end
+	end
+
 end
